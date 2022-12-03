@@ -1,0 +1,8 @@
+{
+  "style": "scss",
+  "component": "function",
+  "fileExtension": "tsx",
+  "sourceDir": "src/components",
+  "directoryComponent": "yes",
+  "nativeStyle": "file"
+}

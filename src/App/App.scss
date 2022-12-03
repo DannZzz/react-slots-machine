@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap");
+@import "../style-vars.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  @include font;
+  padding: 0;
+  background-image: $background-gradient;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
