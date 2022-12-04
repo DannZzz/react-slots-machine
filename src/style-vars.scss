@@ -3,3 +3,29 @@ $background-gradient: linear-gradient(to right, #cc2b5e, #753a88);
 @mixin font {
   font-family: "Zen Dots", cursive;
 }
+
+@mixin shadow {
+  box-shadow: 1px 10px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+@mixin shake {
+  animation: shake 0.2s linear infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(0.5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-0.5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

@@ -5,50 +5,32 @@
   width: 65%;
   background-color: aliceblue;
   margin-top: 100px;
-  box-shadow: 1px 10px 10px 1px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
   justify-content: space-between;
+  position: relative;
+  @include shadow;
+
+  &.winning {
+    @include shake;
+  }
 
   .top-bar {
+    margin: 10px;
     width: 100%;
     border-bottom: 0.5px solid black;
-    height: 50px;
+    // height: 50px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
     span {
       font-size: 25px;
       text-transform: uppercase;
-    }
-  }
-
-  .board {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .symbol-list {
-      .slick-list {
-        width: 150px;
-      }
-
-      height: 300px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-
-      .symbol-icon {
-        height: 150px;
-        width: 150px;
-        object-fit: cover;
-      }
     }
   }
 
@@ -65,9 +47,18 @@
     color: white;
     transition: all 0.2s linear;
     cursor: pointer;
+    @include shadow;
 
     &:active {
       transform: translateY(10px);
     }
+  }
+
+  .balance {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 13px;
+    letter-spacing: 1px;
   }
 }

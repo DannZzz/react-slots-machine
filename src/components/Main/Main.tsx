@@ -9,25 +9,65 @@ const slots = new Slots();
 
 const Main = () => {
   const [balance, setBalance] = useState<number>(DEFAULT_BALANCE);
+  const [bestWin, setBestWin] = useState<number>(0);
   const [spinning, setSpinning] = useState<boolean>(false);
+  const [lastWin, setLastWin] = useState<number>(0);
+  const [shake, setShake] = useState<boolean>(false);
+
+  function changeBalance(amount: number) {
+    setBalance(balance + amount);
+  }
 
   function onSpin() {
+    changeBalance(-1);
     setSpinning(true);
-    const timeout = setTimeout(() => {
-      setSpinning(false);
-      clearTimeout(timeout);
-    }, 6000);
+  }
+
+  function endSpin() {
+    setSpinning(false);
+  }
+
+  function setWinning(amount: number) {
+    if (bestWin) {
+      if (bestWin < amount) setBestWin(amount);
+    } else {
+      setBestWin(amount);
+    }
+  }
+
+  function startShake() {
+    setShake(true);
+  }
+
+  function stopShake() {
+    setShake(false);
   }
 
   return (
-    <div className="main">
+    <div className={"main" + (shake ? " winning" : "")}>
       <div className="top-bar">
-        <span>Balance: {Dann.formatNumber(balance)}</span>
+        <span>Best Win: {Dann.formatNumber(bestWin)}</span>
+        <span className="amount">Last Win: {Dann.formatNumber(lastWin)}</span>
       </div>
-      <Board spinning={spinning} slots={slots} />
-      <button onClick={onSpin} className="spin-button">
+      <Board
+        startShake={startShake}
+        stopShake={stopShake}
+        lastWin={lastWin}
+        setLastWin={setLastWin}
+        setWinning={setWinning}
+        changeBalance={changeBalance}
+        spinning={spinning}
+        endSpin={endSpin}
+        slots={slots}
+      />
+      <button
+        disabled={spinning || shake}
+        onClick={onSpin}
+        className="spin-button"
+      >
         Spin
       </button>
+      <span className="balance">Balance: {Dann.formatNumber(balance)}</span>
     </div>
   );
 };
