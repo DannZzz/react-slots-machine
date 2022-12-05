@@ -2,7 +2,11 @@
   "name": "slots",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gitname.github.io/react-gh-pages",
+  "homepage": "https://DannZzz.github.io/react-slots-machine",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DannZzz/react-slots-machine.git"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
