@@ -65,7 +65,6 @@ const Board: FC<{
           // calcuting winnings
           createTimeout(async () => {
             const winning = spree.calc();
-            console.log(winning);
             if (winning.won) {
               startShake();
               const pieces = Math.ceil(

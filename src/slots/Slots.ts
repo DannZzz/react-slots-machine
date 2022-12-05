@@ -124,14 +124,12 @@ class WinningSpree {
       const centerLineResult = this.calcLine(centerLine, "center");
       if (centerLineResult.won) return centerLineResult;
     } else {
-      console.log(asArray);
       const topLine = asArray.map((indexOfSymbol) =>
         Slots.at(Math.floor(indexOfSymbol))
       );
       const bottomLine = asArray.map((indexOfSymbol) =>
         Slots.at(Math.ceil(indexOfSymbol))
       );
-      console.log(topLine, bottomLine);
       const topLineResult = this.calcLine(topLine, "top");
       const bottomLineResult = this.calcLine(bottomLine, "bottom");
       if (topLineResult.won || bottomLineResult.won)
