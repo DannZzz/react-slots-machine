@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Dann from "dann-util";
 import "./Main.scss";
-import { DEFAULT_BALANCE } from "../../config";
+import { DEFAULT_BALANCE, VALID_BETS } from "../../config";
 import Board from "../Board/Board";
 import { Slots } from "../../slots/Slots";
+import BetSystem from "../BetSystem/BetSystem";
 
 const slots = new Slots();
 
@@ -13,13 +14,15 @@ const Main = () => {
   const [spinning, setSpinning] = useState<boolean>(false);
   const [lastWin, setLastWin] = useState<number>(0);
   const [shake, setShake] = useState<boolean>(false);
+  const [bet, setBet] = useState<number>(VALID_BETS[0]);
 
   function changeBalance(amount: number) {
     setBalance(balance + amount);
   }
 
   function onSpin() {
-    changeBalance(-1);
+    if (balance < bet) return;
+    changeBalance(-bet);
     setSpinning(true);
   }
 
@@ -28,11 +31,18 @@ const Main = () => {
   }
 
   function setWinning(amount: number) {
+    amount *= bet;
     if (bestWin) {
       if (bestWin < amount) setBestWin(amount);
     } else {
       setBestWin(amount);
     }
+    changeBalance(amount);
+  }
+
+  function setLastWinWithBet(amount: number) {
+    amount *= bet;
+    setLastWin(amount);
   }
 
   function startShake() {
@@ -41,6 +51,11 @@ const Main = () => {
 
   function stopShake() {
     setShake(false);
+  }
+
+  function setNewBet(amount: number) {
+    if (spinning || shake) return;
+    setBet(amount);
   }
 
   return (
@@ -53,20 +68,22 @@ const Main = () => {
         startShake={startShake}
         stopShake={stopShake}
         lastWin={lastWin}
-        setLastWin={setLastWin}
+        setLastWin={setLastWinWithBet}
         setWinning={setWinning}
-        changeBalance={changeBalance}
         spinning={spinning}
         endSpin={endSpin}
         slots={slots}
       />
-      <button
-        disabled={spinning || shake}
-        onClick={onSpin}
-        className="spin-button"
-      >
-        Spin
-      </button>
+      <div className="control-panel">
+        <button
+          disabled={spinning || shake}
+          onClick={onSpin}
+          className="spin-button"
+        >
+          Spin
+        </button>
+        <BetSystem bet={bet} setBet={setNewBet} />
+      </div>
       <span className="balance">Balance: {Dann.formatNumber(balance)}</span>
     </div>
   );

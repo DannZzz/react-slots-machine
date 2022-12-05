@@ -13,15 +13,12 @@ const Board: FC<{
   lastWin: number;
   setLastWin: (amount: number) => void;
   setWinning: (amount: number) => void;
-  changeBalance: (amount: number) => void;
 }> = ({
   slots,
   spinning,
   endSpin,
-  changeBalance,
   setWinning,
   setLastWin,
-  lastWin,
   stopShake,
   startShake,
 }) => {
@@ -79,7 +76,6 @@ const Board: FC<{
               createTimeout(() => {
                 stopShake();
                 setLastWin(winning.amount);
-                changeBalance(winning.amount);
                 setWinning(winning.amount);
               }, pieces * 100);
               let i = 1;

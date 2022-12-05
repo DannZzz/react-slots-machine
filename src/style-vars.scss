@@ -1,4 +1,6 @@
-$background-gradient: linear-gradient(to right, #cc2b5e, #753a88);
+$color-1: #cc2b5e;
+$color-2: #753a88;
+$background-gradient: linear-gradient(to right, $color-1, $color-2);
 
 @mixin font {
   font-family: "Zen Dots", cursive;
@@ -28,4 +30,10 @@ $background-gradient: linear-gradient(to right, #cc2b5e, #753a88);
   100% {
     transform: rotate(0deg);
   }
+}
+
+@mixin no-select {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
