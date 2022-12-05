@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/react-slots-machine/static/css/main.55983e2f.css",
+    "main.js": "/react-slots-machine/static/js/main.3b93189b.js",
+    "static/media/cherry.png": "/react-slots-machine/static/media/cherry.bf8ff775f283d40cd322.png",
+    "static/media/seven.png": "/react-slots-machine/static/media/seven.def0aac622c0d334fbe0.png",
+    "static/media/threeBar.png": "/react-slots-machine/static/media/threeBar.14297fb0540b32900bc3.png",
+    "static/media/twoBar.png": "/react-slots-machine/static/media/twoBar.c352c572c0c2015b61cf.png",
+    "static/media/bar.png": "/react-slots-machine/static/media/bar.63bdd925748dd22f072f.png",
+    "index.html": "/react-slots-machine/index.html",
+    "main.55983e2f.css.map": "/react-slots-machine/static/css/main.55983e2f.css.map",
+    "main.3b93189b.js.map": "/react-slots-machine/static/js/main.3b93189b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.55983e2f.css",
+    "static/js/main.3b93189b.js"
+  ]
+}
