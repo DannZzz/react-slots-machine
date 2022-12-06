@@ -1,0 +1,21 @@
+@import "../../style-vars.scss";
+
+.custom-modal {
+  background: aliceblue;
+  width: fit-content;
+  padding: 30px;
+  border: 1px solid $color-1;
+  border-radius: 10px;
+  outline: none;
+  margin: 150px auto;
+  @include shadow;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    @include button(linear-gradient(to right, lightGreen, green));
+  }
+}

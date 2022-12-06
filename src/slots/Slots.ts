@@ -18,6 +18,8 @@ export interface Winning {
   amount: number;
 }
 
+export type SlotsIndex = [number?, number?, number?];
+
 export interface ISymbol {
   name: SymbolName;
   icon: any;

@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Dann from "dann-util";
 import "./Main.scss";
 import { DEFAULT_BALANCE, VALID_BETS } from "../../config";
 import Board from "../Board/Board";
-import { Slots } from "../../slots/Slots";
+import { Slots, SlotsIndex } from "../../slots/Slots";
 import BetSystem from "../BetSystem/BetSystem";
+import { IoHammerSharp } from "react-icons/io5";
+import { ModalContext } from "../../contexts/Modal";
+import ModalSlots from "../ModalSlots/ModalSlots";
 
 const slots = new Slots();
 
@@ -15,6 +18,10 @@ const Main = () => {
   const [lastWin, setLastWin] = useState<number>(0);
   const [shake, setShake] = useState<boolean>(false);
   const [bet, setBet] = useState<number>(VALID_BETS[0]);
+
+  const [spintTo, setSpinTo] = useState<SlotsIndex>(null);
+
+  const { dispatchModal } = useContext(ModalContext);
 
   function changeBalance(amount: number) {
     setBalance(balance + amount);
@@ -65,6 +72,7 @@ const Main = () => {
         <span className="amount">Last Win: {Dann.formatNumber(lastWin)}</span>
       </div>
       <Board
+        spinTo={spintTo}
         startShake={startShake}
         stopShake={stopShake}
         lastWin={lastWin}
@@ -84,6 +92,10 @@ const Main = () => {
         </button>
         <BetSystem bet={bet} setBet={setNewBet} />
       </div>
+      <IoHammerSharp
+        className="edit-slides"
+        onClick={() => dispatchModal(<ModalSlots />)}
+      />
       <span className="balance">Balance: {Dann.formatNumber(balance)}</span>
     </div>
   );

@@ -1,0 +1,18 @@
+.bet-arrow {
+  cursor: pointer;
+  transition: all 0.1s linear;
+  font-size: 20px;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+
+  &:active {
+    &.up {
+      transform: translateY(-2px);
+    }
+    &.down {
+      transform: translateY(2px);
+    }
+  }
+}

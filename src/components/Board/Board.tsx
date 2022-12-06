@@ -1,5 +1,5 @@
-import React, { FC, useRef } from "react";
-import { Slots } from "../../slots/Slots";
+import React, { FC, useEffect, useRef } from "react";
+import { Slots, SlotsIndex } from "../../slots/Slots";
 import Slider, { Settings } from "react-slick";
 import "./Board.scss";
 import { createTimeout } from "../../util/timeout";
@@ -10,6 +10,7 @@ const Board: FC<{
   startShake: () => void;
   stopShake: () => void;
   slots: Slots;
+  spinTo: SlotsIndex;
   lastWin: number;
   setLastWin: (amount: number) => void;
   setWinning: (amount: number) => void;
@@ -18,6 +19,7 @@ const Board: FC<{
   spinning,
   endSpin,
   setWinning,
+  spinTo,
   setLastWin,
   stopShake,
   startShake,
@@ -32,13 +34,23 @@ const Board: FC<{
   var sliderSettings: Settings = {
     infinite: true,
     arrows: false,
+    draggable: false,
     speed: 10,
     autoplaySpeed: 10,
+    // slidesToShow: 3,
     slidesToScroll: 0.5,
     vertical: true,
     accessibility: false,
     dotsClass: "symbol-icon",
   };
+
+  useEffect(() => {
+    if (spinTo?.length > 0) {
+      spinTo.forEach((indexSlide, i) => {
+        slider(i + 1)?.slickGoTo(indexSlide);
+      });
+    }
+  }, [spinTo]);
 
   if (spinning) {
     const spree = Slots.spree();
