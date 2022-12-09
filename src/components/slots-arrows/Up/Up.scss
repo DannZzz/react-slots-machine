@@ -1,6 +1,12 @@
 .bet-arrow {
   cursor: pointer;
   transition: all 0.1s linear;
+  font-size: 20px;
+
+  &.modal {
+    z-index: 100;
+    color: aliceblue;
+  }
 
   &:hover {
     transform: scale(1.1);

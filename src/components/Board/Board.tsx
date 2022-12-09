@@ -14,6 +14,7 @@ const Board: FC<{
   lastWin: number;
   setLastWin: (amount: number) => void;
   setWinning: (amount: number) => void;
+  setSpinTo: (indexes: SlotsIndex) => void;
 }> = ({
   slots,
   spinning,
@@ -23,6 +24,7 @@ const Board: FC<{
   setLastWin,
   stopShake,
   startShake,
+  setSpinTo,
 }) => {
   const list1Ref = useRef<Slider>(null);
   const list2Ref = useRef<Slider>(null);
@@ -30,6 +32,14 @@ const Board: FC<{
   const refsInArray = [list1Ref, list2Ref, list3Ref];
 
   const slider = (i: number) => refsInArray?.[i - 1]?.current;
+
+  useEffect(() => {
+    if (spinTo && !refsInArray.some((n) => !n)) {
+      spinTo.forEach((ind, i) => {
+        refsInArray[i]?.current?.slickGoTo(ind);
+      });
+    }
+  }, [spinTo]);
 
   var sliderSettings: Settings = {
     infinite: true,

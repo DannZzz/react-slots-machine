@@ -9,7 +9,7 @@ const Down: React.FC<{
 }> = ({ onClick, className, style }) => {
   return (
     <BsFillCaretDownFill
-      className={"bet-arrow down " + (className || "")}
+      className={"bet-arrow down modal " + (className || "")}
       onClick={onClick}
       style={style}
     />

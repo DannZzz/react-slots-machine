@@ -73,6 +73,7 @@ const Main = () => {
       </div>
       <Board
         spinTo={spintTo}
+        setSpinTo={setSpinTo}
         startShake={startShake}
         stopShake={stopShake}
         lastWin={lastWin}
@@ -94,7 +95,7 @@ const Main = () => {
       </div>
       <IoHammerSharp
         className="edit-slides"
-        onClick={() => dispatchModal(<ModalSlots />)}
+        onClick={() => dispatchModal(<ModalSlots setSpinTo={setSpinTo} />)}
       />
       <span className="balance">Balance: {Dann.formatNumber(balance)}</span>
     </div>

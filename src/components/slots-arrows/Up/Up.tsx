@@ -9,7 +9,7 @@ const Up: React.FC<{
 }> = ({ onClick, className, style }) => {
   return (
     <BsFillCaretUpFill
-      className={"bet-arrow up " + (className || "")}
+      className={"bet-arrow up modal " + (className || "")}
       onClick={onClick}
       style={style}
     />
